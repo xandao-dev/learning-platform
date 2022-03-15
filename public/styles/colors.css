@@ -1,0 +1,26 @@
+:root {
+	--color-primary: #1DBAD3;
+	--color-secondary: #222E44;
+	--color-secondary-light: #2E3C56;
+
+	--color-background: #E5E5E5;
+	--color-background-dark: #DEE2E6;
+	--color-background-card: #F5F9F9;
+	--color-background-card-dark: #C4C4C4;
+	--color-background-offcanvas: #F9F9F9;
+	--color-background-overlay: #00000040;
+
+	--color-table-primary: #FCFDF8;
+	--color-table-secondary: #FDF8F8;
+
+	--color-text-white: #FFFFFF;
+	--color-text-light: #F5F9F9;
+	--color-text-black: #000000;
+	--color-text-dark: #333333;
+
+	--btn-primary-bg: #86C51F;
+	--btn-secondary-bg: #EC3F5F;
+
+	--color-icon-primary: #1E0D83;
+	--color-icon-secondary: #666666;
+}

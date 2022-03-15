@@ -25,9 +25,14 @@
 
 <style>
 	@import '../public/styles/typography.css';
+	@import '../public/styles/colors.css';
 
 	/* Typography */
 	:global(:root) {
 		font-family: 'Open Sans', sans-serif;
+	}
+	:global(html, body) {
+		margin: 0;
+		padding: 0;
 	}
 </style>
