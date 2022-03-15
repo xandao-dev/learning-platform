@@ -24,6 +24,7 @@
 </Router>
 
 <style>
+	@import 'bootstrap-icons/font/bootstrap-icons';
 	@import '../public/styles/typography.css';
 	@import '../public/styles/colors.css';
 

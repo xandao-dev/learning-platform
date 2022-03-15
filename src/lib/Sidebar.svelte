@@ -3,11 +3,17 @@
 </script>
 
 <nav>
-	<div />
+	<div>
+		<i class="bi bi-list" />
+	</div>
 	<div>
 		<ul>
-			<Link to="/">Início</Link>
-			<Link to="trainings">Treinamento</Link>
+			<Link to="/">
+				<i class="bi bi-house" />
+			</Link>
+			<Link to="trainings">
+				<i class="bi bi-book" />
+			</Link>
 		</ul>
 	</div>
 </nav>
