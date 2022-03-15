@@ -8,14 +8,34 @@
 	</div>
 	<div>
 		<ul>
-			<Link to="/">
-				<i class="bi bi-house" />
-			</Link>
-			<Link to="trainings">
-				<i class="bi bi-book" />
-			</Link>
+			<li>
+				<Link to="/">
+					<i class="bi bi-house" />
+				</Link>
+			</li>
+			<li>
+				<Link to="trainings">
+					<i class="bi bi-book active" />
+				</Link>
+			</li>
 		</ul>
 	</div>
 </nav>
 
-<style></style>
+<style>
+	nav {
+		width: 6.25rem;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: var(--color-secondary);
+	}
+	i {
+		font-size: 1.5rem;
+		color: var(--color-icon-white);
+	}
+	.active {
+		color: var(--color-icon-active);
+	}
+</style>

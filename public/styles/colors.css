@@ -21,6 +21,8 @@
 	--btn-primary-bg: #86C51F;
 	--btn-secondary-bg: #EC3F5F;
 
-	--color-icon-primary: #1E0D83;
-	--color-icon-secondary: #666666;
+	--color-icon-white: #F5F9F9;
+	--color-icon-gray: #666666;
+	--color-icon-active: #EC3F5F;
+	--color-icon-dark: #1E0D83;
 }

@@ -5,22 +5,25 @@
 	import Home from './routes/Home.svelte';
 	import Trainings from './routes/Trainings.svelte';
 	import UserSettings from './routes/UserSettings.svelte';
+	import Default from './layout/Default.svelte';
 </script>
 
 <Router>
-	<Menubar />
-	<Sidebar />
-	<main>
-		<Route path="/">
-			<Home />
-		</Route>
-		<Route path="trainings">
-			<Trainings />
-		</Route>
-		<Route path="user-settings">
-			<UserSettings />
-		</Route>
-	</main>
+	<Default>
+		<Menubar slot="menubar" />
+		<Sidebar slot="sidebar" />
+		<main slot="main">
+			<Route path="/">
+				<Home />
+			</Route>
+			<Route path="trainings">
+				<Trainings />
+			</Route>
+			<Route path="user-settings">
+				<UserSettings />
+			</Route>
+		</main>
+	</Default>
 </Router>
 
 <style>
@@ -35,5 +38,6 @@
 	:global(html, body) {
 		margin: 0;
 		padding: 0;
+		overflow: hidden;
 	}
 </style>
