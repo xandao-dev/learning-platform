@@ -1,11 +1,24 @@
 <script lang="ts">
+	import { Router, Route } from 'svelte-navigator';
+	import Menubar from './lib/Menubar.svelte';
+	import Sidebar from './lib/Sidebar.svelte';
+	import Home from './routes/Home.svelte';
+	import Trainings from './routes/Trainings.svelte';
+	import UserSettings from './routes/UserSettings.svelte';
 </script>
 
-<main />
-
-<style>
-	:root {
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
-			'Helvetica Neue', sans-serif;
-	}
-</style>
+<Router>
+	<Menubar />
+	<Sidebar />
+	<main>
+		<Route path="/">
+			<Home />
+		</Route>
+		<Route path="trainings">
+			<Trainings />
+		</Route>
+		<Route path="user-settings">
+			<UserSettings />
+		</Route>
+	</main>
+</Router>
