@@ -22,3 +22,12 @@
 		</Route>
 	</main>
 </Router>
+
+<style>
+	@import '../public/styles/typography.css';
+
+	/* Typography */
+	:global(:root) {
+		font-family: 'Open Sans', sans-serif;
+	}
+</style>
