@@ -5,6 +5,9 @@
 	<div class="menubar">
 		<slot name="menubar" />
 	</div>
+	<div class="breadcrumb">
+		<slot name="breadcrumb" />
+	</div>
 	<div class="sidebar">
 		<slot name="sidebar" />
 	</div>
@@ -17,16 +20,19 @@
 	.layout-grid {
 		display: grid;
 		grid-template-columns: auto 1fr 1fr;
-		grid-template-rows: auto 1fr 1fr;
+		grid-template-rows: auto auto 1fr;
 		grid-template-areas:
 			'sidebar menubar menubar'
-			'sidebar main main'
+			'sidebar breadcrumb breadcrumb'
 			'sidebar main main';
 		width: 100vw;
 		height: 100vh;
 	}
 	.menubar {
 		grid-area: menubar;
+	}
+	.breadcrumb {
+		grid-area: breadcrumb;
 	}
 	.sidebar {
 		grid-area: sidebar;

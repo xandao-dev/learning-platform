@@ -1,3 +1,8 @@
+<script lang="ts">
+	export let location;
+	export let navigate;
+</script>
+
 <svelte:head>
 	<title>Treinamentos - Learning Platform</title>
 </svelte:head>

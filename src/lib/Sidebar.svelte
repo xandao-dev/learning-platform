@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Link } from 'svelte-navigator';
+	import { routes } from '../routes/routes';
 </script>
 
 <nav>
@@ -9,13 +10,13 @@
 	<div>
 		<ul>
 			<li>
-				<Link to="/">
-					<i class="bi bi-house" />
+				<Link to={routes.home.path}>
+					<i class={routes.home.icon} />
 				</Link>
 			</li>
 			<li>
-				<Link to="trainings">
-					<i class="bi bi-book active" />
+				<Link to={routes.trainings.path}>
+					<i class="{routes.trainings.icon} active" />
 				</Link>
 			</li>
 		</ul>
