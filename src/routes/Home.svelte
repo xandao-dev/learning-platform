@@ -1,6 +1,10 @@
 <script lang="ts">
-	export let location;
-	export let navigate;
+	import type { NavigatorLocation } from 'svelte-navigator';
+
+	// svelte-ignore unused-export-let
+	export let location: NavigatorLocation;
+	// svelte-ignore unused-export-let
+	export let navigate: {};
 </script>
 
 <svelte:head>
