@@ -1,6 +1,8 @@
 <script lang="ts">
+	import avatar from '../assets/avatars/alexandre.png';
 	let user = {
 		name: 'Alexandre Calil',
+		avatar: avatar,
 	};
 </script>
 
@@ -9,11 +11,7 @@
 		<h1 class="name">{user.name}</h1>
 		<span class="action">Key Account</span>
 	</div>
-	<img
-		class="avatar"
-		src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
-		alt="user profile"
-	/>
+	<img class="avatar" src={user.avatar} alt="avatar do usuário" />
 </div>
 
 <style>
