@@ -53,8 +53,8 @@
 	.header {
 		margin: 3.75rem 0;
 	}
-	.header > .icons,
-	.header > .icons::before {
+	.header .icons,
+	.header .icons::before {
 		line-height: 1.5rem;
 	}
 

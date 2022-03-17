@@ -39,6 +39,6 @@
 		width: 3.75rem;
 		height: 3.75rem;
 		border-radius: 50%;
-		margin-right: 2rem;
+		margin-right: 1.875rem;
 	}
 </style>

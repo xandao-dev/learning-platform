@@ -59,7 +59,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
-		margin-left: 2rem;
+		margin-left: 1.875rem;
 	}
 	.chevron {
 		margin: 0 1.25rem;

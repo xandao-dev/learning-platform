@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <div class="layout-grid">
 	<div class="menubar">
 		<slot name="menubar" />
@@ -39,8 +36,6 @@
 	}
 	.main {
 		grid-area: main;
-		/* #FIXME move 70px to store */
-		height: calc(100vh - 70px);
 		overflow-y: auto;
 	}
 </style>
