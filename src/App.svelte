@@ -26,6 +26,7 @@
 	@import 'bootstrap-icons/font/bootstrap-icons';
 	@import '../public/styles/typography.css';
 	@import '../public/styles/colors.css';
+	@import '../public/styles/buttons.css';
 
 	/* Typography */
 	:global(:root) {

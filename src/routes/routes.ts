@@ -8,6 +8,7 @@ export interface IRoute {
 	name: string;
 	icon: string;
 	parent?: string;
+	isOnSidebar: boolean;
 }
 
 export const routes = {
@@ -17,6 +18,7 @@ export const routes = {
 		name: 'Home',
 		icon: 'bi bi-house',
 		parent: null,
+		isOnSidebar: true,
 	},
 	trainings: {
 		path: '/trainings',
@@ -24,6 +26,7 @@ export const routes = {
 		name: 'Treinamentos',
 		icon: 'bi bi-book',
 		parent: 'home',
+		isOnSidebar: true,
 	},
 	userSettings: {
 		path: '/user-settings',
@@ -31,5 +34,6 @@ export const routes = {
 		name: 'Key Account',
 		icon: 'bi bi-gear',
 		parent: 'home',
+		isOnSidebar: false,
 	},
 };

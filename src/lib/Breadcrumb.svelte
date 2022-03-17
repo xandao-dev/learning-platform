@@ -5,7 +5,6 @@
 
 	const location = useLocation();
 	let breadcrumbList: IRoute[] = [];
-	$: breadcrumbList = getBreadcrumbList(getRouteFromPath($location.pathname));
 
 	function getBreadcrumbList(route: IRoute) {
 		const breadcrumb = [];
@@ -27,6 +26,8 @@
 	function isLastCrumb(index: number) {
 		return index === breadcrumbList.length - 1;
 	}
+
+	$: breadcrumbList = getBreadcrumbList(getRouteFromPath($location.pathname));
 </script>
 
 <div class="breadcrumb">
