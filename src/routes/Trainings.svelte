@@ -2,6 +2,7 @@
 	import { v4 as uuidv4 } from 'uuid';
 	import type { NavigatorLocation } from 'svelte-navigator';
 	import TrainingCard from '../lib/TrainingCard.svelte';
+	import DefaultButton from '../lib/DefaultButton.svelte';
 	import type { ITraining } from 'src/store/trainings';
 	import svelteLogo from '../assets/trainings/svelte.png';
 	import reactLogo from '../assets/trainings/react.png';
@@ -11,7 +12,7 @@
 	// svelte-ignore unused-export-let
 	export let navigate: {};
 
-	const trainings: ITraining[] = [
+	let trainings: ITraining[] = [
 		{
 			id: '00569d59-5bc9-491e-94ec-a5906188727e',
 			title: 'Curso de Svelte',
@@ -25,7 +26,7 @@
 		{
 			id: '42f0aa21-3bbd-46af-9586-0153c6f32a0d',
 			title: 'Curso de React',
-			description: 'Description 2',
+			description: 'Como criar aplicativos utilizando React',
 			logo: reactLogo,
 			duration: '30h',
 			startDate: 1600000000000,
@@ -33,13 +34,30 @@
 			enabled: false,
 		},
 	];
+
+	function addTraining() {
+		const training: ITraining = {
+			id: uuidv4(),
+			title: 'Curso de Vue.js',
+			description: 'Como criar aplicativos utilizando Vue.js, um framework web progressivo',
+			logo: reactLogo,
+			duration: '30h',
+			startDate: 1600000000000,
+			endDate: 9999999999999,
+			enabled: false,
+		};
+		trainings = [...trainings, training];
+	}
 </script>
 
 <svelte:head>
 	<title>Treinamentos - Learning Platform</title>
 </svelte:head>
 <div class="page">
-	<h1 class="page-title">Seus Treinamentos</h1>
+	<header class="page-header">
+		<h1 class="page-title">Seus Treinamentos</h1>
+		<DefaultButton on:click={addTraining}>Novo Treinamento</DefaultButton>
+	</header>
 	<section>
 		{#each trainings as training (training.id)}
 			<TrainingCard {training} />
@@ -50,6 +68,11 @@
 <style>
 	.page {
 		margin: 1.875rem;
+	}
+	.page-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 	.page-title {
 		font-size: 1.375rem;
