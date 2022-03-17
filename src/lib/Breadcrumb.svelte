@@ -31,15 +31,15 @@
 </script>
 
 <div class="breadcrumb">
-	<div>
+	<div class="crumbs">
 		{#each breadcrumbList as route, i (route.path)}
 			{#if !isLastCrumb(i)}
 				<Link to={route.path}>
-					{route.name}
+					<span class="link-content">{route.name}</span>
 				</Link>
-				<i class="bi bi-chevron-right" />
+				<i class="bi bi-chevron-right chevron" />
 			{:else}
-				{route.name}
+				<span class="link-content last-link">{route.name}</span>
 			{/if}
 		{/each}
 	</div>
@@ -54,5 +54,22 @@
 		justify-content: space-between;
 		background-color: var(--color-background-dark);
 		height: 3.125rem;
+	}
+	.crumbs {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		margin-left: 2rem;
+	}
+	.chevron {
+		margin: 0 1.25rem;
+		font-size: 0.75rem;
+	}
+	.link-content {
+		color: var(--color-text-dark);
+		font-size: 1rem;
+	}
+	.link-content:not(.last-link):hover {
+		color: var(--color-text-black);
 	}
 </style>

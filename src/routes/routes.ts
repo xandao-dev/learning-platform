@@ -23,7 +23,7 @@ export const routes = {
 	trainings: {
 		path: '/trainings',
 		component: Trainings,
-		name: 'Treinamentos',
+		name: 'Treinamento',
 		icon: 'bi bi-book',
 		parent: 'home',
 		isOnSidebar: true,

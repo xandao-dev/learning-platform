@@ -37,4 +37,10 @@
 		padding: 0;
 		overflow: hidden;
 	}
+	:global(h1, h2, h3, h4, h5, h6, p, a, button) {
+		outline: none;
+	}
+	:global(a) {
+		text-decoration: none;
+	}
 </style>
