@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Link } from 'svelte-navigator';
-	import { routes, IRoute } from '../routes/routes';
+	import { routes, IRoute } from '../../routes/routes';
 	import { useLocation } from 'svelte-navigator';
 
 	const location = useLocation();

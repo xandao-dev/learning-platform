@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Router, Route } from 'svelte-navigator';
 	import { routes, IRoute } from './routes/routes';
-	import Menubar from './lib/Menubar.svelte';
-	import Sidebar from './lib/Sidebar.svelte';
-	import Breadcrumb from './lib/Breadcrumb.svelte';
+	import Menubar from './lib/layout-components/Menubar.svelte';
+	import Sidebar from './lib/layout-components/Sidebar.svelte';
+	import Breadcrumb from './lib/layout-components/Breadcrumb.svelte';
 	import Default from './layout/Default.svelte';
 
 	const routeList = Object.values(routes);
@@ -57,7 +57,7 @@
 		padding: 0;
 		overflow: hidden;
 	}
-	:global(h1, h2, h3, h4, h5, h6, p, a, button) {
+	:global(h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select) {
 		outline: none;
 	}
 	:global(a) {

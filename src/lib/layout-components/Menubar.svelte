@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ProfileMenu from './ProfileMenu.svelte';
+	import ProfileMenu from '../ProfileMenu.svelte';
 </script>
 
 <div class="menubar">
