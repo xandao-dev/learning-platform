@@ -6,6 +6,7 @@
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+	user-select: none;
 }
 .h-empty-button:active {
 	transform: scale(0.9);

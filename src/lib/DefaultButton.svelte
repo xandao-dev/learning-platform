@@ -48,6 +48,7 @@
 		font-size: 1.125rem;
 		font-weight: 400;
 		text-transform: uppercase;
+		user-select: none;
 	}
 	button:hover {
 		filter: brightness(0.9);
