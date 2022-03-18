@@ -1,26 +1,33 @@
 <script lang="ts">
-	let files: FileList;
+	export let image: string = '';
 
-	$: if (files) {
-		console.log(files);
-		for (const file of files) {
-			console.log(`${file.name}: ${file.size} bytes`);
+	const onFileSelected = (e: any) => {
+		let img = e.target.files[0];
+
+		const oneMegaByte = 1048576;
+		const maxSizeMB = 5;
+		if (img.size > maxSizeMB * oneMegaByte) {
+			alert(`Imagem muito grande, o máximo é ${maxSizeMB}MB!`);
+			return;
 		}
-	}
+
+		let reader = new FileReader();
+		reader.readAsDataURL(img);
+		reader.onload = (e) => {
+			image = e.target.result as string;
+		};
+	};
 </script>
 
-<label class="image-upload">
-	<input accept="image/png, image/jpeg" bind:files id="avatar" name="avatar" type="file" />
-	<i class="bi bi-camera" />
-	Selecione uma imagem
+<label class="image-upload" class:clean={image}>
+	<input type="file" accept=".jpg, .jpeg, .png" on:change={(e) => onFileSelected(e)} />
+	{#if !image}
+		<i class="bi bi-camera" />
+		Selecione uma imagem
+	{:else}
+		<img class="preview" src={image} alt="Previsão da imagem selecionada pelo usuário" />
+	{/if}
 </label>
-
-{#if files}
-	<h2>Selected files:</h2>
-	{#each Array.from(files) as file}
-		<p>{file.name} ({file.size} bytes)</p>
-	{/each}
-{/if}
 
 <style>
 	.image-upload {
@@ -40,11 +47,22 @@
 		font-size: 0.75rem;
 		cursor: pointer;
 	}
+	.clean {
+		border: none;
+		background-color: transparent;
+		color: transparent;
+	}
 	.image-upload > i {
 		font-size: 2rem;
 		color: var(--color-icon-gray);
 	}
-	input[type='file'] {
+	.image-upload > input {
 		display: none;
+	}
+	.image-upload > img {
+		width: 100%;
+		height: 100%;
+		border-radius: 0.625rem;
+		object-fit: cover;
 	}
 </style>
