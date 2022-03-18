@@ -49,6 +49,9 @@
 		font-weight: 400;
 		text-transform: uppercase;
 	}
+	button:hover {
+		filter: brightness(0.9);
+	}
 	div[button-ripple-effect] {
 		position: absolute;
 		pointer-events: none;

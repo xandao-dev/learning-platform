@@ -3,6 +3,7 @@
 	import type { NavigatorLocation } from 'svelte-navigator';
 	import TrainingCard from '../lib/TrainingCard.svelte';
 	import DefaultButton from '../lib/DefaultButton.svelte';
+	import Offcanvas from '../lib/Offcanvas.svelte';
 	import type { ITraining } from 'src/store/trainings';
 	import svelteLogo from '../assets/trainings/svelte.png';
 	import reactLogo from '../assets/trainings/react.png';
@@ -35,7 +36,23 @@
 		},
 	];
 
+	interface IOffcanvasData {
+		title: string;
+		help: string;
+		open: boolean;
+	}
+	let offcanvasData: IOffcanvasData = {
+		title: '',
+		help: '',
+		open: false,
+	};
+
 	function addTraining() {
+		offcanvasData.title = 'Novo treinamento';
+		offcanvasData.help = 'Adicione um novo treinamento ou curso';
+		offcanvasData.open = true;
+
+		/*
 		const training: ITraining = {
 			id: uuidv4(),
 			title: 'Curso de Vue.js',
@@ -47,6 +64,7 @@
 			enabled: false,
 		};
 		trainings = [...trainings, training];
+		*/
 	}
 </script>
 
@@ -63,6 +81,7 @@
 			<TrainingCard {training} />
 		{/each}
 	</section>
+	<Offcanvas {...offcanvasData} />
 </div>
 
 <style>
