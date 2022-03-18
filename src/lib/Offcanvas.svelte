@@ -27,7 +27,7 @@
 			<slot />
 		</section>
 		<footer>
-			<slot>
+			<slot name="footer">
 				<DefaultButton bgColor="var(--btn-secondary-bg)" on:click={closeOffcanvas}>Cancelar</DefaultButton>
 			</slot>
 		</footer>
@@ -110,6 +110,11 @@
 	header .help:hover > .tooltip {
 		opacity: 1;
 		visibility: visible;
+	}
+
+	.content {
+		width: 100%;
+		height: 100%;
 	}
 
 	footer {

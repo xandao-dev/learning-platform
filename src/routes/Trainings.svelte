@@ -4,6 +4,7 @@
 	import TrainingCard from '../lib/TrainingCard.svelte';
 	import DefaultButton from '../lib/DefaultButton.svelte';
 	import Offcanvas from '../lib/Offcanvas.svelte';
+	import ImagePicker from '../lib/ImagePicker.svelte';
 	import type { ITraining } from 'src/store/trainings';
 	import svelteLogo from '../assets/trainings/svelte.png';
 	import reactLogo from '../assets/trainings/react.png';
@@ -81,7 +82,9 @@
 			<TrainingCard {training} />
 		{/each}
 	</section>
-	<Offcanvas {...offcanvasData} />
+	<Offcanvas {...offcanvasData}>
+		<ImagePicker />
+	</Offcanvas>
 </div>
 
 <style>
