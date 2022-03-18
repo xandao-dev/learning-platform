@@ -32,6 +32,26 @@
 	:global(:root) {
 		font-family: 'Open Sans', sans-serif;
 	}
+	:global(input[type='text']) {
+		font-family: 'Open Sans', sans-serif;
+	}
+	:global(input[type='search']) {
+		font-family: 'Open Sans', sans-serif;
+	}
+	:global(input:input-placeholder) {
+		/* Internet Explorer 10-11 */
+		font-family: 'Open Sans', sans-serif;
+	}
+	:global(input::input-placeholder) {
+		/* Microsoft Edge */
+		font-family: 'Open Sans', sans-serif;
+	}
+	:global(input::placeholder) {
+		/* Chrome, Firefox, Opera, Safari 10.1+ */
+		font-family: 'Open Sans', sans-serif;
+		opacity: 1; /* Firefox */
+	}
+
 	:global(html, body) {
 		margin: 0;
 		padding: 0;
