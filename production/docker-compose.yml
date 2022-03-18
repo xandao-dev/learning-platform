@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+    nginx:
+        image: nginx:1.13.6-alpine
+        container_name: nginx
+        restart: "unless-stopped"
+        network_mode: "host"
+        volumes:
+            - ${NGINX_DEFAULT_CONF_VOLUME_PATH}:/etc/nginx/conf.d:ro
+            - ${NGINX_LOGS_VOLUME_PATH}:/var/log/nginx:rw
+            - ${NGINX_APP_VOLUME_PATH}:/var/www/app:ro
+            - type: bind
+              source: ${NGINX_CONF_PATH}
+              target: /etc/nginx/nginx.conf
+            - ${CERTBOT_WWW_VOLUME_PATH}:/var/www/certbot/:ro
+            - ${CERTBOT_CONF_VOLUME_PATH}:/etc/letsencrypt:ro
+        #ports: 80, 443
+        depends_on:
+            - certbot
+            - learning-platform
+        # Restart when new certificates arrive
+        command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    certbot:
+        image: certbot/certbot:v1.24.0
+        container_name: certbot
+        restart: "unless-stopped"
+        volumes:
+            - ${CERTBOT_WWW_VOLUME_PATH}:/var/www/certbot/:rw
+            - ${CERTBOT_CONF_VOLUME_PATH}:/etc/letsencrypt/:rw
+        # Automatically renew certificates
+        entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    learning-platform:
+        image: xandao6/learning-platform:latest
+        container_name: learning-platform
+        tty: true  
+        restart: "no"
+        volumes:
+            - ${NGINX_APP_VOLUME_PATH}:/usr/src/app:rw
+        
