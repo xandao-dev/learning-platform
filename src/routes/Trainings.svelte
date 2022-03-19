@@ -1,19 +1,22 @@
 <script lang="ts">
 	import { v4 as uuidv4 } from 'uuid';
-	import type { NavigatorLocation } from 'svelte-navigator';
-	import type { ITraining } from 'src/store/trainings';
-	import { trainings, getEmptyTraining } from '../store/trainings';
+	import type { NavigatorLocation, NavigateFn } from 'svelte-navigator';
+	import { trainings, getEmptyTraining, ITraining } from '../store/trainings';
 	import TrainingCard from '../lib/TrainingCard.svelte';
 	import DefaultButton from '../lib/DefaultButton.svelte';
 	import Offcanvas from '../lib/Offcanvas.svelte';
 	import TrainingForm from '../lib/form-components/TrainingForm.svelte';
 	import svelteLogo from '../assets/trainings/svelte.png';
 	import reactLogo from '../assets/trainings/react.png';
+	import { routes, IRoute } from '../routes/routes';
+	import { currentRoute } from '../store/routing';
 
+	export let route: IRoute;
 	// svelte-ignore unused-export-let
 	export let location: NavigatorLocation;
-	// svelte-ignore unused-export-let
-	export let navigate: {};
+	export let navigate: NavigateFn;
+
+	currentRoute.set(route);
 
 	let offcanvasData = {
 		title: '',
@@ -66,6 +69,9 @@
 	function removeTraining(e: { detail: { id: string } }) {
 		trainings.remove(e.detail.id);
 	}
+	function openTraining(e: { detail: { id: string } }) {
+		navigate(routes.training.path.replace('*trainingId', e.detail.id));
+	}
 
 	function saveTraining() {
 		offcanvasData.open = false;
@@ -94,7 +100,7 @@
 	</header>
 	<section>
 		{#each $trainings as training (training.id)}
-			<TrainingCard {training} on:remove={removeTraining} on:edit={editTraining} />
+			<TrainingCard {training} on:remove={removeTraining} on:edit={editTraining} on:open={openTraining} />
 		{/each}
 	</section>
 	<Offcanvas {...offcanvasData}>

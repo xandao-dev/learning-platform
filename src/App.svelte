@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Router, Route } from 'svelte-navigator';
-	import { routes, IRoute } from './routes/routes';
+	import { routes } from './routes/routes';
 	import Menubar from './lib/layout-components/Menubar.svelte';
 	import Sidebar from './lib/layout-components/Sidebar.svelte';
 	import Breadcrumb from './lib/layout-components/Breadcrumb.svelte';
@@ -16,7 +16,7 @@
 		<Breadcrumb slot="breadcrumb" />
 		<main slot="main">
 			{#each routeList as route (route.path)}
-				<Route path={route.path} component={route.component} />
+				<Route path={route.path} component={route.component} {route} />
 			{/each}
 		</main>
 	</Default>

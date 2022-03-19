@@ -1,5 +1,6 @@
 import Home from './Home.svelte';
 import Trainings from './Trainings.svelte';
+import Training from './Training.svelte';
 import UserSettings from './UserSettings.svelte';
 
 export interface IRoute {
@@ -27,6 +28,14 @@ export const routes = {
 		icon: 'bi bi-book',
 		parent: 'home',
 		isOnSidebar: true,
+	},
+	training: {
+		path: '/training/*trainingId',
+		component: Training,
+		name: 'Treinamento',
+		icon: '',
+		parent: 'home',
+		isOnSidebar: false,
 	},
 	userSettings: {
 		path: '/user-settings',

@@ -14,11 +14,16 @@
 			id: training.id,
 		});
 	}
+	function openTraining() {
+		dispatch('open', {
+			id: training.id,
+		});
+	}
 	let trainingStatus = 'DESABILITADO';
 	$: trainingStatus = training.enabled ? 'HABILITADO' : 'DESABILITADO';
 </script>
 
-<div class="card">
+<div class="card" on:click={openTraining}>
 	<img class="logo" src={training.image} alt="Imagem com a logo do treinamento" />
 	<div class="content">
 		<h1>{training.name}</h1>
@@ -50,6 +55,7 @@
 		border-radius: 0.625rem;
 		background-color: var(--color-background-card);
 		box-shadow: 0px 1px 10px 2px rgba(0, 0, 0, 0.15);
+		cursor: pointer;
 	}
 	.logo {
 		grid-area: logo;

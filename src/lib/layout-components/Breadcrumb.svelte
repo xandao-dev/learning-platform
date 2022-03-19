@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { Link } from 'svelte-navigator';
 	import { routes, IRoute } from '../../routes/routes';
-	import { useLocation } from 'svelte-navigator';
+	import { currentRoute } from '../../store/routing';
 
-	const location = useLocation();
 	let breadcrumbList: IRoute[] = [];
 
 	function getBreadcrumbList(route: IRoute) {
@@ -20,14 +19,11 @@
 		}
 		return breadcrumb;
 	}
-	function getRouteFromPath(path: string) {
-		return Object.values(routes).find((route) => route.path === path);
-	}
 	function isLastCrumb(index: number) {
 		return index === breadcrumbList.length - 1;
 	}
 
-	$: breadcrumbList = getBreadcrumbList(getRouteFromPath($location.pathname));
+	$: breadcrumbList = getBreadcrumbList($currentRoute);
 </script>
 
 <div class="breadcrumb">

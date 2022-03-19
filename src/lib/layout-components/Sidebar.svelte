@@ -1,17 +1,9 @@
 <script lang="ts">
 	import { Link } from 'svelte-navigator';
-	import { routes, IRoute } from '../../routes/routes';
-	import { useLocation } from 'svelte-navigator';
+	import { routes } from '../../routes/routes';
+	import { currentRoute } from '../../store/routing';
 
-	const location = useLocation();
 	const sidebarRoutes = Object.values(routes).filter((route) => route.isOnSidebar);
-	let currentRoute: IRoute = routes.home;
-
-	function getRouteFromPath(path: string) {
-		return Object.values(sidebarRoutes).find((route) => route.path === path);
-	}
-
-	$: currentRoute = getRouteFromPath($location.pathname);
 </script>
 
 <nav>
@@ -24,7 +16,7 @@
 		{#each sidebarRoutes as route (route.path)}
 			<li>
 				<Link to={route.path}>
-					<i class="{route.icon} icons" class:selected={currentRoute.path === route.path} />
+					<i class="{route.icon} icons" class:selected={$currentRoute?.path === route.path} />
 				</Link>
 			</li>
 		{/each}
