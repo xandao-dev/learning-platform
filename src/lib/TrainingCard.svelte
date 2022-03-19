@@ -1,7 +1,17 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import type { ITraining } from '../store/trainings';
 	export let training: ITraining;
 
+	const dispatch = createEventDispatcher();
+	function editTraining() {
+		dispatch('edit');
+	}
+	function removeTraining() {
+		dispatch('remove', {
+			id: training.id,
+		});
+	}
 	let trainingStatus = 'DESABILITADO';
 	$: trainingStatus = training.enabled ? 'HABILITADO' : 'DESABILITADO';
 </script>
@@ -14,8 +24,12 @@
 	</div>
 	<div class="pill" class:enabled={training.enabled}>{trainingStatus}</div>
 	<div class="tools">
-		<i class="bi bi-pencil-square edit-training" />
-		<i class="bi bi-trash remove-training" />
+		<button class="h-empty-button close-button" on:click={editTraining}>
+			<i class="bi bi-pencil-square edit-training" />
+		</button>
+		<button class="h-empty-button close-button" on:click={removeTraining}>
+			<i class="bi bi-trash remove-training" />
+		</button>
 	</div>
 </div>
 
@@ -84,11 +98,11 @@
 		display: flex;
 		justify-content: space-between;
 	}
-	.tools > .edit-training {
+	.tools .edit-training {
 		color: var(--color-icon-dark);
 		font-size: 1.25rem;
 	}
-	.tools > .remove-training {
+	.tools .remove-training {
 		color: var(--color-icon-active);
 		font-size: 1.25rem;
 	}

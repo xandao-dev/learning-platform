@@ -53,7 +53,11 @@
 		offcanvasData.help = 'Adicione um novo treinamento ou curso';
 		offcanvasData.open = true;
 	}
-
+	function editTraining(e) {
+		offcanvasData.title = 'Editar treinamento';
+		offcanvasData.help = 'Edite o treinamento ou curso';
+		offcanvasData.open = true;
+	}
 	let training: ITraining = {
 		id: '',
 		image: '',
@@ -70,6 +74,10 @@
 		training.enabled = true;
 		trainings = [...trainings, training];
 	}
+	function removeTraining(e) {
+		const id = e.detail.id;
+		trainings = trainings.filter((training) => training.id !== id);
+	}
 </script>
 
 <svelte:head>
@@ -82,7 +90,7 @@
 	</header>
 	<section>
 		{#each trainings as training (training.id)}
-			<TrainingCard {training} />
+			<TrainingCard {training} on:remove={removeTraining} on:edit={editTraining} />
 		{/each}
 	</section>
 	<Offcanvas {...offcanvasData}>
