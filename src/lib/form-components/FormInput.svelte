@@ -8,7 +8,7 @@
 
 <div style="margin: {margin}">
 	<label for={name}>{label}</label>
-	<input type="text" {name} {placeholder} {value} />
+	<input type="text" {name} {placeholder} bind:value />
 </div>
 
 <style>

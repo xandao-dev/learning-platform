@@ -8,7 +8,7 @@
 
 <div style="margin: {margin}">
 	<label for={name}>{label}</label>
-	<textarea type="text" {name} {placeholder} {value} maxlength="350" />
+	<textarea type="text" {name} {placeholder} bind:value maxlength="350" />
 </div>
 
 <style>

@@ -7,7 +7,7 @@
 
 <div style="margin: {margin}">
 	<label for={name}>{label}</label>
-	<input type="datetime-local" {name} {value} step="60" />
+	<input type="datetime-local" {name} bind:value step="60" />
 </div>
 
 <style>

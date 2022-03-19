@@ -7,9 +7,9 @@
 </script>
 
 <div class="card">
-	<img class="logo" src={training.logo} alt="Imagem com a logo do treinamento" />
+	<img class="logo" src={training.image} alt="Imagem com a logo do treinamento" />
 	<div class="content">
-		<h1>{training.title}</h1>
+		<h1>{training.name}</h1>
 		<p>{training.description}</p>
 	</div>
 	<div class="pill" class:enabled={training.enabled}>{trainingStatus}</div>

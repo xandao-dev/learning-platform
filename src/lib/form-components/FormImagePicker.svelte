@@ -38,7 +38,7 @@
 		flex-direction: column;
 		box-sizing: border-box;
 		border-radius: 0.625rem;
-		border: 1px dashed var(--color-icon-gray);
+		outline: 1px dashed var(--color-icon-gray);
 		width: 10.625rem;
 		height: 6.25rem;
 		margin: 0 auto;

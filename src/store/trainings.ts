@@ -2,10 +2,10 @@ import { writable } from 'svelte/store';
 
 export interface ITraining {
 	id: string;
-	title: string;
+	image: string;
+	name: string;
 	description: string;
-	logo: string;
-	duration: string;
+	workload: string;
 	startDate: number;
 	endDate: number;
 	enabled: boolean;
