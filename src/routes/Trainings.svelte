@@ -4,7 +4,7 @@
 	import TrainingCard from '../lib/TrainingCard.svelte';
 	import DefaultButton from '../lib/DefaultButton.svelte';
 	import Offcanvas from '../lib/Offcanvas.svelte';
-	import ImagePicker from '../lib/ImagePicker.svelte';
+	import TrainingForm from '../lib/form-components/TrainingForm.svelte';
 	import type { ITraining } from 'src/store/trainings';
 	import svelteLogo from '../assets/trainings/svelte.png';
 	import reactLogo from '../assets/trainings/react.png';
@@ -83,7 +83,10 @@
 		{/each}
 	</section>
 	<Offcanvas {...offcanvasData}>
-		<ImagePicker />
+		<TrainingForm />
+		<svelte:fragment slot="footer">
+			<DefaultButton bgColor="var(--btn-primary-bg)">Salvar</DefaultButton>
+		</svelte:fragment>
 	</Offcanvas>
 </div>
 

@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let image: string = '';
-
+	export let margin: string = '0 auto';
+	export let tabindex: number | undefined = undefined;
 	const onFileSelected = (e: any) => {
 		let img = e.target.files[0];
 
@@ -19,7 +20,7 @@
 	};
 </script>
 
-<label class="image-upload" class:clean={image}>
+<label class="image-upload" class:clean={image} style="margin: {margin}" {tabindex}>
 	<input type="file" accept=".jpg, .jpeg, .png" on:change={(e) => onFileSelected(e)} />
 	{#if !image}
 		<i class="bi bi-camera" />
@@ -41,14 +42,18 @@
 		width: 10.625rem;
 		height: 6.25rem;
 		margin: 0 auto;
-		background-color: var(--color-icon-white);
+		background-color: var(--color-text-white);
 		color: var(--color-icon-gray);
 		box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
 		font-size: 0.75rem;
 		cursor: pointer;
 	}
+	.image-upload:focus,
+	.image-upload:active {
+		outline: 1px dashed var(--color-primary);
+	}
 	.clean {
-		border: none;
+		outline: none;
 		background-color: transparent;
 		color: transparent;
 	}
