@@ -5,7 +5,9 @@
 
 	const dispatch = createEventDispatcher();
 	function editTraining() {
-		dispatch('edit');
+		dispatch('edit', {
+			id: training.id,
+		});
 	}
 	function removeTraining() {
 		dispatch('remove', {

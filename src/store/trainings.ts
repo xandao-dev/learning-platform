@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 
 export interface ITraining {
 	id: string;
@@ -9,4 +9,45 @@ export interface ITraining {
 	startDate: number;
 	endDate: number;
 	enabled: boolean;
+}
+
+function createTrainings() {
+	const all = writable([]);
+	const { subscribe, update } = all;
+	return {
+		subscribe,
+		getById: (id: string) => {
+			const training = get(all).find((t) => t.id === id);
+			if (training) return training;
+			return getEmptyTraining();
+		},
+		create: (training: ITraining) => update((trs) => [...trs, training]),
+		createBulk: (trainings: ITraining[]) => update((trs) => [...trs, ...trainings]),
+		edit: (training: ITraining) =>
+			update((trs) => {
+				const index = trs.findIndex((t) => t.id === training.id);
+				if (index !== -1) trs[index] = training;
+				return trs;
+			}),
+		remove: (id: string) =>
+			update((trs) => {
+				const index = trs.findIndex((t) => t.id === id);
+				if (index !== -1) trs.splice(index, 1);
+				return trs;
+			}),
+	};
+}
+
+export const trainings = createTrainings();
+export function getEmptyTraining(): ITraining {
+	return {
+		id: '',
+		image: '',
+		name: '',
+		description: '',
+		workload: '',
+		startDate: 0,
+		endDate: 0,
+		enabled: true,
+	};
 }

@@ -3,15 +3,10 @@
 	import FormInput from './FormInput.svelte';
 	import FormTextArea from './FormTextArea.svelte';
 	import FormDatePicker from './FormDatePicker.svelte';
+	import type { ITraining } from 'src/store/trainings';
+	import { getEmptyTraining } from '../../store/trainings';
 
-	export let training = {
-		image: '',
-		name: '',
-		description: '',
-		workload: '',
-		startDate: 0,
-		endDate: 0,
-	};
+	export let training: ITraining = getEmptyTraining();
 	let startDate = '';
 	let endDate = '';
 	$: {
