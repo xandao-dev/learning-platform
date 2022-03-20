@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { Router, Route } from 'svelte-navigator';
 	import { routes } from './routes/routes';
+	import { fillInitialTrainings } from './utils/fillInitialTrainings';
 	import Menubar from './lib/layout-components/Menubar.svelte';
 	import Sidebar from './lib/layout-components/Sidebar.svelte';
 	import Breadcrumb from './lib/layout-components/Breadcrumb.svelte';
 	import Default from './layout/Default.svelte';
 
 	const routeList = Object.values(routes);
+	fillInitialTrainings();
 </script>
 
 <Router>
