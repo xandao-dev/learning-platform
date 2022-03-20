@@ -1,4 +1,5 @@
 import { writable, get } from 'svelte/store';
+import { trainingModules } from './trainingModules';
 
 export interface ITraining {
 	id: string;
@@ -32,7 +33,10 @@ function createTrainings() {
 		remove: (id: string) =>
 			update((trs) => {
 				const index = trs.findIndex((t) => t.id === id);
-				if (index !== -1) trs.splice(index, 1);
+				if (index !== -1) {
+					trainingModules.removeAllFromTraining(id);
+					trs.splice(index, 1);
+				}
 				return trs;
 			}),
 	};
