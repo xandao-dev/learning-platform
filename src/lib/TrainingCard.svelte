@@ -48,7 +48,7 @@
 		grid-template-areas:
 			'logo content pill .'
 			'logo content tools .';
-		grid-column-gap: 1.25rem;
+		column-gap: 1.25rem;
 		width: 100%;
 		height: 6.25rem;
 		margin: 1.875rem 0;

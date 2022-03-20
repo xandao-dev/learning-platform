@@ -3,10 +3,10 @@
 	import type { NavigatorLocation, NavigateFn } from 'svelte-navigator';
 	import type { IRoute } from '../routes/routes';
 	import { currentRoute } from '../store/routing';
-	import TrainingCard from '../lib/TrainingCard.svelte';
+	import { trainings } from '../store/trainings';
+	import TabsNavigator from '../lib/TabsNavigator.svelte';
 	import DefaultButton from '../lib/DefaultButton.svelte';
-	import Offcanvas from '../lib/Offcanvas.svelte';
-	import TrainingForm from '../lib/form-components/TrainingForm.svelte';
+	import TrainingDescription from '../lib/TrainingDescription.svelte';
 
 	export let trainingId: string;
 	export let route: IRoute;
@@ -16,59 +16,75 @@
 	export let navigate: NavigateFn;
 
 	currentRoute.set(route);
+	const training = trainings.getById(trainingId);
+	const tabs = [
+		{
+			name: 'Módulos',
+			path: `${trainingId}#modules`,
+			hash: 'modules',
+		},
+		{
+			name: 'Aulas',
+			path: `${trainingId}#classes`,
+			hash: 'classes',
+		},
+	];
+	let selectedTab = tabs[0];
+	let newActionText = 'Novo módulo';
+	$: newActionText = selectedTab.hash === 'modules' ? 'Novo Módulo' : 'Nova Aula';
 </script>
 
 <svelte:head>
 	<title>Treinamento - Learning Platform</title>
 </svelte:head>
 <div class="page">
-	<header class="page-header">
-		<h1 class="page-title">Seus Treinamentos</h1>
-		<DefaultButton on:click={() => {}}>Novo Treinamento</DefaultButton>
-		<Link to="{trainingId}#modules">Módulos</Link>
-		<Link to="{trainingId}#classes">Aulas</Link>
-	</header>
-	<section>
-		<Router>
-			<Route path=":id" let:params>
-				<h2>Módulos</h2>
-				<h2>ID: {JSON.stringify(params)}</h2>
-				<h2>ID3: {JSON.stringify(trainingId)}</h2>
-				<!--Offcanvas {...offcanvasData}>
-					<TrainingForm bind:training={currentTraining} />
-					<svelte:fragment slot="footer">
-						{#if !isEditingTraining}
-							<DefaultButton bgColor="var(--btn-primary-bg)" on:click={saveTraining}>Salvar</DefaultButton
-							>
-						{:else}
-							<DefaultButton bgColor="var(--btn-primary-bg)" on:click={updateTraining}
-								>Salvar</DefaultButton
-							>
-							<DefaultButton bgColor="var(--btn-secondary-bg)" on:click={disableTraining}
-								>Desabilitar</DefaultButton
-							>
-						{/if}
-					</svelte:fragment>
-				</Offcanvas-->
-			</Route>
-		</Router>
-	</section>
+	<div class="navigator">
+		<TabsNavigator {tabs} bind:current={selectedTab} />
+		<div class="content">
+			<Router>
+				<Route path=":id" let:params>
+					<h2>Módulos</h2>
+					<h2>ID: {JSON.stringify(params)}</h2>
+					<h2>ID2: {JSON.stringify(trainingId)}</h2>
+					<h2>LOC: {JSON.stringify(location.hash)}</h2>
+				</Route>
+			</Router>
+		</div>
+	</div>
+	<div class="actions">
+		<DefaultButton on:click={() => {}}>{newActionText}</DefaultButton>
+	</div>
+	<div class="description">
+		<TrainingDescription {training} />
+	</div>
 </div>
 
 <style>
 	.page {
 		margin: 1.875rem;
+		display: grid;
+		grid-template-columns: 1fr auto;
+		grid-template-rows: auto;
+		grid-template-areas:
+			'navigator actions'
+			'navigator description';
+		column-gap: 1.875rem;
 	}
-	.page-header {
+	.navigator {
+		grid-area: navigator;
+	}
+	.actions {
+		grid-area: actions;
 		display: flex;
-		justify-content: space-between;
+		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 	}
-	.page-title {
-		font-size: 1.375rem;
-		text-transform: uppercase;
-		font-weight: 600;
-		margin: 0;
-		padding: 0;
+	.description {
+		grid-area: description;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 </style>
