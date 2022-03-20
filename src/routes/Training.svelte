@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { Router, Route, Link } from 'svelte-navigator';
 	import type { NavigatorLocation, NavigateFn } from 'svelte-navigator';
 	import type { IRoute } from '../routes/routes';
 	import { currentRoute } from '../store/routing';
 	import { trainings } from '../store/trainings';
+	import { ITrainingModule, trainingModules } from '../store/trainingModules';
 	import TabsNavigator from '../lib/TabsNavigator.svelte';
 	import DefaultButton from '../lib/DefaultButton.svelte';
 	import TrainingDescription from '../lib/TrainingDescription.svelte';
+	import TrainingModulesGrid from '../lib/TrainingModulesGrid.svelte';
 
 	export let trainingId: string;
 	export let route: IRoute;
@@ -17,6 +18,7 @@
 
 	currentRoute.set(route);
 	const training = trainings.getById(trainingId);
+	let currentModules: ITrainingModule[] = [];
 	const tabs = [
 		{
 			name: 'Módulos',
@@ -25,13 +27,14 @@
 		},
 		{
 			name: 'Aulas',
-			path: `${trainingId}#classes`,
-			hash: 'classes',
+			path: `${trainingId}#lessons`,
+			hash: 'lessons',
 		},
 	];
 	let selectedTab = tabs[0];
 	let newActionText = 'Novo módulo';
 	$: newActionText = selectedTab.hash === 'modules' ? 'Novo Módulo' : 'Nova Aula';
+	$: currentModules = trainingModules.getAllFromTraining(trainingId);
 </script>
 
 <svelte:head>
@@ -40,21 +43,18 @@
 <div class="page">
 	<div class="navigator">
 		<TabsNavigator {tabs} bind:current={selectedTab} />
-		<div class="content">
-			<Router>
-				<Route path=":id" let:params>
-					<h2>Módulos</h2>
-					<h2>ID: {JSON.stringify(params)}</h2>
-					<h2>ID2: {JSON.stringify(trainingId)}</h2>
-					<h2>LOC: {JSON.stringify(location.hash)}</h2>
-				</Route>
-			</Router>
-		</div>
+	</div>
+	<div class="content">
+		{#if selectedTab.hash === 'lessons'}
+			<h1>Aulas</h1>
+		{:else}
+			<TrainingModulesGrid trainingModules={currentModules} />
+		{/if}
 	</div>
 	<div class="actions">
 		<DefaultButton on:click={() => {}}>{newActionText}</DefaultButton>
 	</div>
-	<div class="description">
+	<div class="training-preview">
 		<TrainingDescription {training} />
 	</div>
 </div>
@@ -67,7 +67,7 @@
 		grid-template-rows: auto;
 		grid-template-areas:
 			'navigator actions'
-			'navigator description';
+			'content preview';
 		column-gap: 1.875rem;
 	}
 	.navigator {
@@ -76,15 +76,9 @@
 	.actions {
 		grid-area: actions;
 		display: flex;
-		flex-direction: column;
-		align-items: center;
 		justify-content: center;
 	}
-	.description {
-		grid-area: description;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+	.training-preview {
+		grid-area: preview;
 	}
 </style>
