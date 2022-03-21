@@ -2,14 +2,17 @@
 	import { createEventDispatcher } from 'svelte';
 	import { getEmptyTrainingModule, ITrainingModule } from '../store/trainingModules';
 	import { IModuleLesson, moduleLessons } from '../store/moduleLessons';
+	import { useLocation } from 'svelte-navigator';
 
 	export let trainingModule: ITrainingModule = getEmptyTrainingModule();
 	export let margin: string = '0';
 
+	const location = useLocation();
 	const dispatch = createEventDispatcher();
 	let currentLessons: IModuleLesson[] = [];
 	let moduleStatus = 'DESABILITADO';
 	let isModuleOpen = false;
+	let moduleOpenedId: string | undefined;
 
 	function editLesson(lessonId: string) {
 		dispatch('edit', {
@@ -29,6 +32,10 @@
 	$: {
 		$moduleLessons;
 		currentLessons = moduleLessons.getAllFromModule(trainingModule.id);
+	}
+	$: {
+		moduleOpenedId = $location?.state?.moduleId;
+		if (moduleOpenedId === trainingModule.id) isModuleOpen = true;
 	}
 </script>
 

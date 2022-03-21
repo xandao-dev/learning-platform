@@ -38,10 +38,10 @@
 	function removeModule(e: { detail: { id: string } }) {
 		trainingModulesStore.remove(e.detail.id);
 	}
-	function openModule() {
+	function openModule(e: { detail: { id: string } }) {
 		const path = routes.training.path.replace('*trainingId', trainingId);
 		const hash = '#lessons';
-		navigate(`${path}${hash}`);
+		navigate(`${path}${hash}`, { state: { moduleId: e.detail.id } });
 	}
 
 	function saveModule() {

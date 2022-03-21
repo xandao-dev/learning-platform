@@ -17,7 +17,9 @@
 		});
 	}
 	function openModule() {
-		dispatch('open');
+		dispatch('open', {
+			id: trainingModule.id,
+		});
 	}
 	let numberOfLessons = moduleLessons.getAllFromModule(trainingModule.id).length;
 	let moduleStatus = 'DESABILITADO';
