@@ -31,10 +31,10 @@
 	</div>
 	<div class="pill" class:enabled={training.enabled}>{trainingStatus}</div>
 	<div class="tools">
-		<button class="h-empty-button" on:click={editTraining}>
+		<button class="h-empty-button" on:click|stopPropagation={editTraining}>
 			<i class="bi bi-pencil-square edit-training" />
 		</button>
-		<button class="h-empty-button" on:click={removeTraining}>
+		<button class="h-empty-button" on:click|stopPropagation={removeTraining}>
 			<i class="bi bi-trash remove-training" />
 		</button>
 	</div>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { ITrainingModule } from '../store/trainingModules';
+	import { getEmptyTrainingModule, ITrainingModule } from '../store/trainingModules';
 	import { moduleLessons } from '../store/moduleLessons';
-	export let trainingModule: ITrainingModule;
+	export let trainingModule: ITrainingModule = getEmptyTrainingModule();
 
 	const dispatch = createEventDispatcher();
 	function editModule() {
@@ -31,10 +31,10 @@
 	<p class="description">{trainingModule.description}</p>
 	<p class="lessons"><b>Aulas:</b>{numberOfLessons}</p>
 	<div class="pill" class:enabled={trainingModule.enabled}>{moduleStatus}</div>
-	<button class="h-empty-button edit-training" on:click={editModule}>
+	<button class="h-empty-button edit-training" on:click|stopPropagation={editModule}>
 		<i class="bi bi-pencil-square" />
 	</button>
-	<button class="h-empty-button remove-training" on:click={removeModule}>
+	<button class="h-empty-button remove-training" on:click|stopPropagation={removeModule}>
 		<i class="bi bi-trash" />
 	</button>
 </div>

@@ -34,7 +34,7 @@ function createTrainingModuleLessons() {
 }
 
 export const moduleLessons = createTrainingModuleLessons();
-export function getEmptyModuleLesson(moduleId: string): IModuleLesson {
+export function getEmptyModuleLesson(moduleId: string = ''): IModuleLesson {
 	return {
 		id: '',
 		moduleId,

@@ -21,12 +21,12 @@
 	<header class="page-header">
 		<h1 class="page-title">Home</h1>
 	</header>
-	<div class="dashboard">
+	<section class="dashboard">
 		<div class="user-card">
 			<h1>Seja bem-vindo, {$user.name}!</h1>
 			<img src={businessImage} alt="Ilustração de um computador" />
 		</div>
-	</div>
+	</section>
 </div>
 
 <style>
@@ -56,5 +56,8 @@
 		font-weight: 600;
 		margin: 0;
 		padding: 0;
+	}
+	.dashboard img {
+		margin-top: 2.5rem;
 	}
 </style>

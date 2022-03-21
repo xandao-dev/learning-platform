@@ -45,7 +45,7 @@ function createTrainingModules() {
 }
 
 export const trainingModules = createTrainingModules();
-export function getEmptyTrainingModule(trainingId: string): ITrainingModule {
+export function getEmptyTrainingModule(trainingId: string = ''): ITrainingModule {
 	return {
 		id: '',
 		trainingId,
