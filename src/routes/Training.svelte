@@ -8,6 +8,7 @@
 	import DefaultButton from '../lib/DefaultButton.svelte';
 	import TrainingDescription from '../lib/TrainingDescription.svelte';
 	import TrainingModulesView from '../lib/TrainingModulesView.svelte';
+	import ModuleLessonsView from '../lib/ModuleLessonsView.svelte';
 
 	export let trainingId: string;
 	export let route: IRoute;
@@ -49,7 +50,7 @@
 	</div>
 	<div class="content">
 		{#if selectedTab.hash === '#lessons'}
-			<h1>Aulas</h1>
+			<ModuleLessonsView bind:this={modulesView} {trainingId} trainingModules={currentModules} />
 		{:else}
 			<TrainingModulesView bind:this={modulesView} {trainingId} trainingModules={currentModules} />
 		{/if}

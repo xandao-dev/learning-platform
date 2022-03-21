@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getEmptyTrainingModule, ITrainingModule } from '../store/trainingModules';
 	import Offcanvas from './Offcanvas.svelte';
-	import TrainingModuleCard from './TrainingModuleCard.svelte';
+	import ModuleLessonAccordion from './ModuleLessonAccordion.svelte';
 	import TrainingModuleForm from './form-components/TrainingModuleForm.svelte';
 	import DefaultButton from './DefaultButton.svelte';
 	import { trainingModules as trainingModulesStore } from '../store/trainingModules';
@@ -62,9 +62,15 @@
 	}
 </script>
 
-<div class="grid">
+<div class="block">
 	{#each trainingModules as trainingModule (trainingModule.id)}
-		<TrainingModuleCard {trainingModule} on:remove={removeModule} on:edit={editModule} on:open={openModule} />
+		<ModuleLessonAccordion
+			{trainingModule}
+			margin="0 0 0.625rem 0"
+			on:remove={removeModule}
+			on:edit={editModule}
+			on:open={openModule}
+		/>
 	{/each}
 </div>
 <Offcanvas {...offcanvasData}>
@@ -80,9 +86,8 @@
 </Offcanvas>
 
 <style>
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	.block {
+		display: block;
 		gap: 1.875rem;
 		width: 100%;
 		height: auto;
