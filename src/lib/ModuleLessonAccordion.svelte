@@ -38,7 +38,11 @@
 		{#if !trainingModule.enabled}
 			<div class="pill" class:enabled={trainingModule.enabled}>{moduleStatus}</div>
 		{/if}
-		<i class={'bi ' + isModuleOpen ? 'bi-chevron-double-up' : 'bi-chevron-double-down'} />
+		{#if isModuleOpen}
+			<i class="bi bi-chevron-double-up" />
+		{:else}
+			<i class="bi bi-chevron-double-down" />
+		{/if}
 	</div>
 	{#if isModuleOpen}
 		<ol on:click|stopPropagation>
