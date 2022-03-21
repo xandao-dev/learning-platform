@@ -47,7 +47,7 @@
 	}
 	function offcanvasRemoveLesson() {
 		offcanvasData.open = false;
-		trainingModulesStore.remove(currentLesson.id);
+		moduleLessonsStore.remove(currentLesson.id);
 	}
 </script>
 
@@ -63,8 +63,7 @@
 			<DefaultButton bgColor="var(--btn-primary-bg)" on:click={offcanvasSaveLesson}>Salvar</DefaultButton>
 		{:else}
 			<DefaultButton bgColor="var(--btn-primary-bg)" on:click={offcanvasUpdateLesson}>Salvar</DefaultButton>
-			<DefaultButton bgColor="var(--btn-secondary-bg)" on:click={offcanvasRemoveLesson}>Desabilitar</DefaultButton
-			>
+			<DefaultButton bgColor="var(--btn-secondary-bg)" on:click={offcanvasRemoveLesson}>Deletar</DefaultButton>
 		{/if}
 	</svelte:fragment>
 </Offcanvas>
