@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { NavigatorLocation, NavigateFn } from 'svelte-navigator';
-	import type { IRoute } from '../routes/routes';
+	import { IRoute, routes } from '../routes/routes';
 	import { currentRoute } from '../store/routing';
 	import { user } from '../store/user';
 	import businessImage from '../assets/images/business.svg';
+	import DefaultButton from '../lib/DefaultButton.svelte';
 
 	export let route: IRoute;
 	// svelte-ignore unused-export-let
@@ -22,9 +23,12 @@
 		<h1 class="page-title">Home</h1>
 	</header>
 	<section class="dashboard">
-		<div class="user-card">
+		<div class="welcome">
 			<h1>Seja bem-vindo, {$user.name}!</h1>
 			<img src={businessImage} alt="Ilustração de um computador" />
+		</div>
+		<div class="actions">
+			<DefaultButton on:click={() => navigate(routes.trainings.path)}>Treinamentos</DefaultButton>
 		</div>
 	</section>
 </div>
@@ -51,13 +55,16 @@
 		align-items: center;
 		margin-top: 1.875rem;
 	}
-	.dashboard h1 {
+	.welcome h1 {
 		font-size: 1.375rem;
 		font-weight: 600;
 		margin: 0;
 		padding: 0;
 	}
-	.dashboard img {
+	.welcome img {
+		margin-top: 2.5rem;
+	}
+	.actions {
 		margin-top: 2.5rem;
 	}
 </style>
