@@ -24,15 +24,16 @@
 		{
 			name: 'Módulos',
 			path: `${trainingId}#modules`,
-			hash: 'modules',
+			hash: '#modules',
 		},
 		{
 			name: 'Aulas',
 			path: `${trainingId}#lessons`,
-			hash: 'lessons',
+			hash: '#lessons',
 		},
 	];
 	let selectedTab = tabs[0];
+	$: selectedTab = tabs.find((tab) => tab.hash === location?.hash) || tabs[0];
 	$: {
 		$trainingModules;
 		currentModules = trainingModules.getAllFromTraining(trainingId);
@@ -47,14 +48,14 @@
 		<TabsNavigator {tabs} bind:current={selectedTab} />
 	</div>
 	<div class="content">
-		{#if selectedTab.hash === 'lessons'}
+		{#if selectedTab.hash === '#lessons'}
 			<h1>Aulas</h1>
 		{:else}
 			<TrainingModulesView bind:this={modulesView} {trainingId} trainingModules={currentModules} />
 		{/if}
 	</div>
 	<div class="actions">
-		{#if selectedTab.hash === 'lessons'}
+		{#if selectedTab.hash === '#lessons'}
 			<DefaultButton on:click={() => {}}>Nova Aula</DefaultButton>
 		{:else}
 			<DefaultButton on:click={modulesView?.newModule}>Novo Módulo</DefaultButton>
