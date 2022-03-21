@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Router, Route } from 'svelte-navigator';
 	import { routes } from './routes/routes';
+	import { setInitialLoggedInUser } from './utils/setInitialLoggedInUser';
 	import { fillInitialTrainings } from './utils/fillInitialTrainings';
 	import Menubar from './lib/layout-components/Menubar.svelte';
 	import Sidebar from './lib/layout-components/Sidebar.svelte';
@@ -8,6 +9,7 @@
 	import Default from './layout/Default.svelte';
 
 	const routeList = Object.values(routes);
+	setInitialLoggedInUser();
 	fillInitialTrainings();
 </script>
 

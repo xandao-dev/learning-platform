@@ -1,17 +1,13 @@
 <script lang="ts">
-	import avatar from '../assets/avatars/alexandre.png';
-	let user = {
-		name: 'Alexandre Calil',
-		avatar: avatar,
-	};
+	import { user } from '../store/user';
 </script>
 
 <div class="profile">
 	<div class="info">
-		<h1 class="name">{user.name}</h1>
+		<h1 class="name">{$user.name}</h1>
 		<span class="action">Key Account</span>
 	</div>
-	<img class="avatar" src={user.avatar} alt="avatar do usuário" />
+	<img class="avatar" src={$user.avatar} alt="avatar do usuário" />
 </div>
 
 <style>
