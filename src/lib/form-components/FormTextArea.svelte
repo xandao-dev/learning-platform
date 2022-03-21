@@ -30,6 +30,7 @@
 		font-weight: 400;
 		line-height: 1.375rem;
 		color: var(--color-text-dark);
+		background-color: var(--color-text-white);
 		box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
 		transition: all 0.5s;
 		cursor: text;

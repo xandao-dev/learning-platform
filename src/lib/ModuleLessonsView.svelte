@@ -57,7 +57,7 @@
 	{/each}
 </div>
 <Offcanvas {...offcanvasData}>
-	<ModuleLessonForm bind:moduleLesson={currentLesson} />
+	<ModuleLessonForm bind:moduleLesson={currentLesson} {trainingModules} />
 	<svelte:fragment slot="footer">
 		{#if !isEditingLesson}
 			<DefaultButton bgColor="var(--btn-primary-bg)" on:click={offcanvasSaveLesson}>Salvar</DefaultButton>

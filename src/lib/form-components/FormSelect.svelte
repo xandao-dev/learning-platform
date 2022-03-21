@@ -1,14 +1,27 @@
 <script lang="ts">
+	interface IOption {
+		id: string;
+		name: string;
+	}
+
 	export let name: string = 'name';
 	export let label: string = 'Nome';
 	export let value: string = '';
-	export let placeholder: string = '';
+	export let options: IOption[] = [];
 	export let margin: string = '0';
+
+	$: if (!value) {
+		value = options[0].id;
+	}
 </script>
 
 <div style="margin: {margin}">
 	<label for={name}>{label}</label>
-	<input type="text" {name} {placeholder} bind:value />
+	<select {name} bind:value>
+		{#each options as item}
+			<option value={item.id}>{item.name}</option>
+		{/each}
+	</select>
 </div>
 
 <style>
@@ -18,7 +31,7 @@
 		color: var(--color-text-black);
 		font-size: 1.125rem;
 	}
-	input {
+	select {
 		display: block;
 		width: 100%;
 		height: 2.5rem;
@@ -34,8 +47,8 @@
 		transition: all 0.5s;
 		cursor: text;
 	}
-	input:focus,
-	input:active {
+	select:focus,
+	select:active {
 		border: 1px solid var(--color-primary);
 	}
 </style>
