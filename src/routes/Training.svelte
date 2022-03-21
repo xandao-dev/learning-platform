@@ -7,7 +7,7 @@
 	import TabsNavigator from '../lib/TabsNavigator.svelte';
 	import DefaultButton from '../lib/DefaultButton.svelte';
 	import TrainingDescription from '../lib/TrainingDescription.svelte';
-	import TrainingModulesGrid from '../lib/TrainingModulesGrid.svelte';
+	import TrainingModulesView from '../lib/TrainingModulesView.svelte';
 
 	export let trainingId: string;
 	export let route: IRoute;
@@ -18,6 +18,7 @@
 
 	currentRoute.set(route);
 	const training = trainings.getById(trainingId);
+	let modulesView: TrainingModulesView;
 	let currentModules: ITrainingModule[] = [];
 	const tabs = [
 		{
@@ -32,8 +33,6 @@
 		},
 	];
 	let selectedTab = tabs[0];
-	let newActionText = 'Novo módulo';
-	$: newActionText = selectedTab.hash === 'modules' ? 'Novo Módulo' : 'Nova Aula';
 	$: currentModules = trainingModules.getAllFromTraining(trainingId);
 </script>
 
@@ -48,11 +47,15 @@
 		{#if selectedTab.hash === 'lessons'}
 			<h1>Aulas</h1>
 		{:else}
-			<TrainingModulesGrid trainingModules={currentModules} />
+			<TrainingModulesView bind:this={modulesView} trainingModules={currentModules} />
 		{/if}
 	</div>
 	<div class="actions">
-		<DefaultButton on:click={() => {}}>{newActionText}</DefaultButton>
+		{#if selectedTab.hash === 'lessons'}
+			<DefaultButton on:click={() => {}}>Nova Aula</DefaultButton>
+		{:else}
+			<DefaultButton on:click={modulesView?.newModule}>Novo Módulo</DefaultButton>
+		{/if}
 	</div>
 	<div class="training-preview">
 		<TrainingDescription {training} />
