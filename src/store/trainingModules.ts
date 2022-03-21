@@ -15,7 +15,7 @@ function createTrainingModules() {
 	const { subscribe, update } = all;
 	return {
 		subscribe,
-		getById: (id: string) => get(all).find((mod) => mod.id === id) || null,
+		getById: (id: string) => get(all).find((mod) => mod.id === id) || getEmptyTrainingModule(),
 		getAllFromTraining: (trainingId: string) => get(all).filter((mod) => mod.trainingId === trainingId) || [],
 		create: (mod: ITrainingModule) => update((mods) => [...mods, mod]),
 		createBulk: (trainingMods: ITrainingModule[]) => update((mods) => [...mods, ...trainingMods]),

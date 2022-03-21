@@ -16,7 +16,7 @@
 
 <form>
 	<FormImagePicker margin="3.75rem auto 0 auto" tabindex={0} bind:image={training.image} />
-	<FormInput name="name" label="Name" margin="3.125rem 0 0 0" bind:value={training.name} />
+	<FormInput name="name" label="Nome" margin="3.125rem 0 0 0" bind:value={training.name} />
 	<FormTextArea name="description" label="Descrição" margin="1.875rem 0 0 0" bind:value={training.description} />
 	<FormInput
 		name="workload"

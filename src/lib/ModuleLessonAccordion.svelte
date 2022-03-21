@@ -11,14 +11,14 @@
 	let moduleStatus = 'DESABILITADO';
 	let isModuleOpen = false;
 
-	function editLesson() {
+	function editLesson(lessonId: string) {
 		dispatch('edit', {
-			id: trainingModule.id,
+			id: lessonId,
 		});
 	}
-	function removeLesson() {
+	function removeLesson(lessonId: string) {
 		dispatch('remove', {
-			id: trainingModule.id,
+			id: lessonId,
 		});
 	}
 	function toggleModule() {
@@ -46,10 +46,13 @@
 				<li class="lesson">
 					<i class="bi bi-book lesson-icon" />
 					<h2 class="lesson-title">{lesson.name}</h2>
-					<button class="h-empty-button edit-training" on:click|stopPropagation={editLesson}>
+					<button class="h-empty-button edit-training" on:click|stopPropagation={() => editLesson(lesson.id)}>
 						<i class="bi bi-pencil-square" />
 					</button>
-					<button class="h-empty-button remove-training" on:click|stopPropagation={removeLesson}>
+					<button
+						class="h-empty-button remove-training"
+						on:click|stopPropagation={() => removeLesson(lesson.id)}
+					>
 						<i class="bi bi-trash" />
 					</button>
 				</li>

@@ -1,86 +1,70 @@
 <script lang="ts">
-	import { getEmptyTrainingModule, ITrainingModule } from '../store/trainingModules';
+	import type { ITrainingModule } from '../store/trainingModules';
 	import Offcanvas from './Offcanvas.svelte';
 	import ModuleLessonAccordion from './ModuleLessonAccordion.svelte';
-	import TrainingModuleForm from './form-components/TrainingModuleForm.svelte';
+	import ModuleLessonForm from './form-components/ModuleLessonForm.svelte';
 	import DefaultButton from './DefaultButton.svelte';
 	import { trainingModules as trainingModulesStore } from '../store/trainingModules';
-	import { routes } from '../routes/routes';
-	import { useNavigate } from 'svelte-navigator';
+	import { IModuleLesson, moduleLessons as moduleLessonsStore } from '../store/moduleLessons';
 	import { v4 as uuidv4 } from 'uuid';
+	import { getEmptyModuleLesson } from '../store/moduleLessons';
 
-	export let trainingId: string;
 	export let trainingModules: ITrainingModule[];
-	export function newModule() {
+	export function newLesson() {
 		offcanvasData.title = 'Novo treinamento';
 		offcanvasData.help = 'Adicione um novo treinamento ou curso';
-		currentModule = getEmptyTrainingModule();
-		isEditingModule = false;
+		currentLesson = getEmptyModuleLesson();
+		isEditingLesson = false;
 		offcanvasData.open = true;
 	}
 
-	const navigate = useNavigate();
 	let offcanvasData = {
 		title: '',
 		help: '',
 		open: false,
 	};
-	let isEditingModule = false;
-	let currentModule = getEmptyTrainingModule();
-
-	function editModule(e: { detail: { id: string } }) {
+	let isEditingLesson = false;
+	let currentLesson: IModuleLesson = getEmptyModuleLesson();
+	function editLesson(e: { detail: { id: string } }) {
 		offcanvasData.title = 'Editar treinamento';
 		offcanvasData.help = 'Edite o treinamento ou curso';
-		currentModule = trainingModulesStore.getById(e.detail.id);
-		isEditingModule = true;
+		currentLesson = moduleLessonsStore.getById(e.detail.id);
+		isEditingLesson = true;
 		offcanvasData.open = true;
 	}
-	function removeModule(e: { detail: { id: string } }) {
-		trainingModulesStore.remove(e.detail.id);
-	}
-	function openModule() {
-		const path = routes.training.path.replace('*trainingId', trainingId);
-		const hash = '#lessons';
-		navigate(`${path}${hash}`);
+	function removeLesson(e: { detail: { id: string } }) {
+		moduleLessonsStore.remove(e.detail.id);
 	}
 
-	function saveModule() {
+	function offcanvasSaveLesson() {
 		offcanvasData.open = false;
-		currentModule.id = uuidv4();
-		currentModule.trainingId = trainingId;
-		currentModule.enabled = true;
-		trainingModulesStore.create(currentModule);
+		currentLesson.id = uuidv4();
+		moduleLessonsStore.create(currentLesson);
 	}
-	function updateModule() {
+	function offcanvasUpdateLesson() {
 		offcanvasData.open = false;
-		trainingModulesStore.edit(currentModule);
+		moduleLessonsStore.edit(currentLesson);
 	}
-	function disableModule() {
+	function offcanvasRemoveLesson() {
 		offcanvasData.open = false;
-		currentModule.enabled = false;
-		trainingModulesStore.edit(currentModule);
+		trainingModulesStore.remove(currentLesson.id);
 	}
 </script>
 
 <div class="block">
 	{#each trainingModules as trainingModule (trainingModule.id)}
-		<ModuleLessonAccordion
-			{trainingModule}
-			margin="0 0 0.625rem 0"
-			on:remove={removeModule}
-			on:edit={editModule}
-			on:open={openModule}
-		/>
+		<ModuleLessonAccordion {trainingModule} margin="0 0 0.625rem 0" on:remove={removeLesson} on:edit={editLesson} />
 	{/each}
 </div>
 <Offcanvas {...offcanvasData}>
-	<TrainingModuleForm bind:trainingModule={currentModule} />
+	<ModuleLessonForm bind:moduleLesson={currentLesson} />
 	<svelte:fragment slot="footer">
-		{#if !isEditingModule}
-			<DefaultButton bgColor="var(--btn-primary-bg)" on:click={saveModule}>Salvar</DefaultButton>
+		{#if !isEditingLesson}
+			<DefaultButton bgColor="var(--btn-primary-bg)" on:click={offcanvasSaveLesson}>Salvar</DefaultButton>
 		{:else}
-			<DefaultButton bgColor="var(--btn-primary-bg)" on:click={updateModule}>Salvar</DefaultButton>
-			<DefaultButton bgColor="var(--btn-secondary-bg)" on:click={disableModule}>Desabilitar</DefaultButton>
+			<DefaultButton bgColor="var(--btn-primary-bg)" on:click={offcanvasUpdateLesson}>Salvar</DefaultButton>
+			<DefaultButton bgColor="var(--btn-secondary-bg)" on:click={offcanvasRemoveLesson}>Desabilitar</DefaultButton
+			>
 		{/if}
 	</svelte:fragment>
 </Offcanvas>

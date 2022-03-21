@@ -20,6 +20,7 @@
 	currentRoute.set(route);
 	const training = trainings.getById(trainingId);
 	let modulesView: TrainingModulesView;
+	let lessonsView: ModuleLessonsView;
 	let currentModules: ITrainingModule[] = [];
 	const tabs = [
 		{
@@ -50,14 +51,14 @@
 	</div>
 	<div class="content">
 		{#if selectedTab.hash === '#lessons'}
-			<ModuleLessonsView bind:this={modulesView} {trainingId} trainingModules={currentModules} />
+			<ModuleLessonsView bind:this={lessonsView} trainingModules={currentModules} />
 		{:else}
 			<TrainingModulesView bind:this={modulesView} {trainingId} trainingModules={currentModules} />
 		{/if}
 	</div>
 	<div class="actions">
 		{#if selectedTab.hash === '#lessons'}
-			<DefaultButton on:click={() => {}}>Nova Aula</DefaultButton>
+			<DefaultButton on:click={lessonsView?.newLesson}>Nova Aula</DefaultButton>
 		{:else}
 			<DefaultButton on:click={modulesView?.newModule}>Novo Módulo</DefaultButton>
 		{/if}

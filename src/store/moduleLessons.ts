@@ -12,7 +12,7 @@ function createTrainingModuleLessons() {
 	const { subscribe, update } = all;
 	return {
 		subscribe,
-		getById: (id: string) => get(all).find((l) => l.id === id) || null,
+		getById: (id: string) => get(all).find((l) => l.id === id) || getEmptyModuleLesson(),
 		getAllFromModule: (moduleId: string) => get(all).filter((l) => l.moduleId === moduleId) || [],
 		create: (lesson: IModuleLesson) => update((lessons) => [...lessons, lesson]),
 		createBulk: (moduleLessons: IModuleLesson[]) => update((lessons) => [...lessons, ...moduleLessons]),

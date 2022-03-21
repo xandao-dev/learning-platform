@@ -17,11 +17,7 @@ function createTrainings() {
 	const { subscribe, update } = all;
 	return {
 		subscribe,
-		getById: (id: string) => {
-			const training = get(all).find((t) => t.id === id);
-			if (training) return training;
-			return getEmptyTraining();
-		},
+		getById: (id: string) => get(all).find((t) => t.id === id) || getEmptyTraining(),
 		create: (training: ITraining) => update((trs) => [...trs, training]),
 		createBulk: (trainings: ITraining[]) => update((trs) => [...trs, ...trainings]),
 		edit: (training: ITraining) =>
