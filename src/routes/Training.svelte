@@ -33,7 +33,10 @@
 		},
 	];
 	let selectedTab = tabs[0];
-	$: currentModules = trainingModules.getAllFromTraining(trainingId);
+	$: {
+		$trainingModules;
+		currentModules = trainingModules.getAllFromTraining(trainingId);
+	}
 </script>
 
 <svelte:head>
@@ -47,7 +50,7 @@
 		{#if selectedTab.hash === 'lessons'}
 			<h1>Aulas</h1>
 		{:else}
-			<TrainingModulesView bind:this={modulesView} trainingModules={currentModules} />
+			<TrainingModulesView bind:this={modulesView} {trainingId} trainingModules={currentModules} />
 		{/if}
 	</div>
 	<div class="actions">

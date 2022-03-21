@@ -9,6 +9,7 @@
 	import { useNavigate } from 'svelte-navigator';
 	import { v4 as uuidv4 } from 'uuid';
 
+	export let trainingId: string;
 	export let trainingModules: ITrainingModule[];
 	export function newModule() {
 		offcanvasData.title = 'Novo treinamento';
@@ -37,13 +38,16 @@
 	function removeModule(e: { detail: { id: string } }) {
 		trainingModulesStore.remove(e.detail.id);
 	}
-	function openModule(e: { detail: { id: string } }) {
-		navigate(routes.training.path.replace('*trainingId', e.detail.id));
+	function openModule() {
+		const path = routes.training.path.replace('*trainingId', trainingId);
+		const hash = '#lessons';
+		navigate(`${path}${hash}`);
 	}
 
 	function saveModule() {
 		offcanvasData.open = false;
 		currentModule.id = uuidv4();
+		currentModule.trainingId = trainingId;
 		currentModule.enabled = true;
 		trainingModulesStore.create(currentModule);
 	}

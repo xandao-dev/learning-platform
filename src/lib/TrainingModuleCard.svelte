@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { getEmptyTrainingModule, ITrainingModule } from '../store/trainingModules';
 	import { moduleLessons } from '../store/moduleLessons';
+
 	export let trainingModule: ITrainingModule = getEmptyTrainingModule();
 
 	const dispatch = createEventDispatcher();
@@ -16,9 +17,7 @@
 		});
 	}
 	function openModule() {
-		dispatch('open', {
-			id: trainingModule.id,
-		});
+		dispatch('open');
 	}
 	let numberOfLessons = moduleLessons.getAllFromModule(trainingModule.id).length;
 	let moduleStatus = 'DESABILITADO';
