@@ -1,11 +1,15 @@
 <script lang="ts">
+	import { routes } from '../routes/routes';
+	import { Link } from 'svelte-navigator';
 	import { user } from '../store/user';
 </script>
 
 <div class="profile">
 	<div class="info">
 		<h1 class="name">{$user.name}</h1>
-		<span class="action">Key Account</span>
+		<Link to={routes.userSettings.path}>
+			<span class="action">Key Account</span>
+		</Link>
 	</div>
 	<img class="avatar" src={$user.avatar} alt="avatar do usuário" />
 </div>
