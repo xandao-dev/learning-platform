@@ -14,8 +14,6 @@
   </p>
 </p>
 
-
-<!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
@@ -41,8 +39,6 @@
   </ol>
 </details>
 
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 <div align="center">
@@ -69,8 +65,6 @@ Figma Mockup: [learning-platform](https://www.figma.com/file/YDOwfyVz4tPOQ041BS4
 * [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript
 * [uuid](https://github.com/uuidjs/uuid) - A library for generating UUIDs
 
-
-<!-- GETTING STARTED -->
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
@@ -87,7 +81,6 @@ To get a local copy up and running follow these simple steps.
 	npm install # or yarn install
 	```
 
-<!-- USAGE EXAMPLES -->
 ## Usage
 
 * Starts the development server
@@ -100,22 +93,15 @@ To get a local copy up and running follow these simple steps.
   npm run preview # or yarn preview
   ```
 
-<!-- ROADMAP -->
 ## Roadmap
 
 See the [open issues](https://github.com/xandao-dev/learning-platform/issues) for a list of proposed features (and known issues).
 
-
 ## Acknowledgements
 
-* EC2 is not the best option for a static SPA, we should migrate to S3 + CloudFront
-* It's using docker under the hood to run the server on production, it's not that necessary for a static site, but it's done
-* The docker images are stored in the [Docker Hub](https://hub.docker.com/r/xandao6/learning-platform)
+* Docker images are stored in the [Docker Hub](https://hub.docker.com/r/xandao6/learning-platform)
 * Configs and logs are addressed to docker volumes specified in the docker-compose.yml file at production folder
-* There are no secrets in the code, but if we need it we should use docker secrets
-* The website is not optimized for mobile devices yet
 
-<!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -126,15 +112,12 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See [LICENSE](./LICENSE.md) for more information.
 
 Free software =)
 
-
-<!-- CONTACT -->
 ## Contact
 
 Alexandre Calil - [Linkedin](https://www.linkedin.com/in/xandao-dev/) - [alexandre@xandao.dev](mailto:alexandre@xandao.dev)
